@@ -51,8 +51,12 @@ IDD = 0;
 IDE = 0;
 rowToWrite = 0;
 
-for t = 0:100
-    rowToWrite = rowToWrite +1;
+% Control case details
+timeLength = 100;
+controlGain = 1;
+
+for t = 0:controlGain:timeLength
+    rowToWrite = rowToWrite + 1;
     IDD(rowToWrite, 1) = t;
 end
 
