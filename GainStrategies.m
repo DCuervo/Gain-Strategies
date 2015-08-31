@@ -48,7 +48,6 @@ gainDetailsFile = 'GainStrategies.xlsx';
 IDT = {'Time\Control Gain', 'Case 1'};
 IDI = {};
 IDD = 0;
-IDE = 0;
 rowToWrite = 0;
 
 % Case details
@@ -85,5 +84,5 @@ set(gca, 'FontSize', 12);
 savefig(gcf, [out_dir 'GainStrategies.fig']);
 saveas(gcf, [out_dir 'GainStrategies.png']);
 
-saveData(out_dir, gainDetailsFile, IDT, IDI, IDD, IDE);
+saveData(out_dir, gainDetailsFile, IDT, IDI, IDD);
 

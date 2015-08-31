@@ -1,4 +1,4 @@
-function saveData(out_dir, fileName, IDT, IDI, IDD, IDE)
+function saveData(out_dir, fileName, IDT, IDI, IDD)
 [~, C] = size(IDI);
 
 % Write out information
