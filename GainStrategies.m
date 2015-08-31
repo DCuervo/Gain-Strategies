@@ -2,7 +2,7 @@
 %
 % Question: Is it better to spend and increase productivity or to keep a
 % steady gain when trying to reach a set amount?
-% Answer: This code! (Potentially...)  
+% Answer: This code! (Potentially...)
 %
 % Code: starting at the same point, with the same gain rate, one case will
 % raise steadily as the control.  Different cases will be added to show
@@ -11,7 +11,7 @@
 % etc...
 %
 % INPUTS:
-% 
+%
 % OUTPUTS:
 % 1) Plot with different cases showing gain over set amount of time, very
 % long-term
@@ -19,11 +19,11 @@
 % 3) Spreadsheet with summary
 %
 % CASES:
-% 0) ControlCase - Steady, linear, increasing 1-to-1; will also be uses as 
+% 0) ControlCase - Steady, linear, increasing 1-to-1; will also be uses as
 % a counter
-% XX) CaseXX - start with steady gain, reach certain amount, spend points to
-% increase gain rate, reach certain amount again, spend points to increase
-% gain rate again
+% XX) CaseXX - start with steady gain, reach certain amount, spend points
+% to increase gain rate, reach certain amount again, spend points to
+% increase gain rate again
 % VARIABLES: not all may be used
 % 1) Spend Amount - minimum spending amount to increase gain rate; will try
 % different minimum amounts
@@ -35,6 +35,34 @@
 % will try limited or continuous
 % 5) Limit of Single Increase - number of spending and increase in one
 % action; will try minimum of 1 to maximum available
+
+% Clean up MATLAB workstation; check which are needed
+close all;
+clear all;
+clc;
+
+out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs\'
+
+% Set up output file
+gainDetailsFile = 'GainStrategies.xlsx';
+IDT = {'Time\Control Gain'};
+IDI = {};
+IDD = 0;
+IDE = 0;
+rowToWrite = 0;
+
+for t = 0:100
+    rowToWrite = rowToWrite +1;
+    IDD(rowToWrite, 1) = t;
+end
+
+plot(IDD(:, 1), IDD(:, 1), 'k', 'LineWidth', 2);
+title('Gain Strategies', 'Interpreter', 'none');
+xlabel('Time', 'FontSize', 12);
+ylabel('Count', 'FontSize', 12);
+set(gca, 'FontSize', 12);
+savefig(gcf, [out_dir 'GainStrategies.fig']);
+saveas(gcf, [out_dir 'GainStrategies.png']);
 
 
 
