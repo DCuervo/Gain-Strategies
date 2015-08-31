@@ -85,5 +85,5 @@ set(gca, 'FontSize', 12);
 savefig(gcf, [out_dir 'GainStrategies.fig']);
 saveas(gcf, [out_dir 'GainStrategies.png']);
 
-
+saveData(out_dir, gainDetailsFile, IDT, IDI, IDD, IDE);
 
