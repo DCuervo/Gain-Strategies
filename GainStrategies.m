@@ -53,7 +53,7 @@ rowToWrite = 0;
 
 % Control case details
 timeLength = 100;
-controlGain = 1;
+controlGain = 0.1;
 
 for t = 0:controlGain:timeLength
     rowToWrite = rowToWrite + 1;
