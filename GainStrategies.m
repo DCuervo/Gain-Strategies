@@ -73,7 +73,7 @@ for t = 0:controlGain:timeLength
         if haveInc == 0
             haveInc = 1;
             sumCase1 = double(single(sumCase1) - 5);
-            gainCase1 = gainCase1 + 0.05;
+            gainCase1 = gainCase1 + 0.005;
         end        
     end
 end
