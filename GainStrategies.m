@@ -45,7 +45,7 @@ out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs
 
 % Set up output file
 gainDetailsFile = 'GainStrategies.xlsx';
-IDT = {'Time\Control Gain'};
+IDT = {'Time\Control Gain', 'Case 1'};
 IDI = {};
 IDD = 0;
 IDE = 0;
@@ -55,12 +55,33 @@ rowToWrite = 0;
 timeLength = 100;
 controlGain = 0.1;
 
+% Case details
+sumCase1 = 0;
+gainCase1 = 1;
+haveInc = 0;
+
 for t = 0:controlGain:timeLength
     rowToWrite = rowToWrite + 1;
+    
+    % Control case
     IDD(rowToWrite, 1) = t;
+    
+    % Case 1
+    IDD(rowToWrite, 2) = sumCase1;
+    sumCase1 = sumCase1 + gainCase1;
+    if sumCase1 == 5
+        if haveInc == 0
+            haveInc = 1;
+            sumCase1 = sumCase1 - 5;
+            gainCase1 = gainCase1 + 0.05;
+        end        
+    end
 end
 
+figure;
+hold on
 plot(IDD(:, 1), IDD(:, 1), 'k', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 2), 'r', 'LineWidth', 2);
 title('Gain Strategies', 'Interpreter', 'none');
 xlabel('Time', 'FontSize', 12);
 ylabel('Count', 'FontSize', 12);
