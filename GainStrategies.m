@@ -45,7 +45,7 @@ out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs
 
 % Set up output file
 gainDetailsFile = 'GainStrategies.xlsx';
-IDT = {'Time\Control Gain'};
+IDT = {'Time\Control Gain', 'Case 1'};
 IDI = {};
 IDD = 0;
 IDE = 0;
