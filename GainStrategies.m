@@ -57,7 +57,7 @@ controlGain = 0.1;
 
 % Case details
 sumCase1 = 0;
-gainCase1 = 1;
+gainCase1 = controlGain;
 haveInc = 0;
 
 for t = 0:controlGain:timeLength
@@ -69,10 +69,10 @@ for t = 0:controlGain:timeLength
     % Case 1
     IDD(rowToWrite, 2) = sumCase1;
     sumCase1 = sumCase1 + gainCase1;
-    if sumCase1 == 5
+    if single(sumCase1) == 5
         if haveInc == 0
             haveInc = 1;
-            sumCase1 = sumCase1 - 5;
+            sumCase1 = double(single(sumCase1) - 5);
             gainCase1 = gainCase1 + 0.05;
         end        
     end
