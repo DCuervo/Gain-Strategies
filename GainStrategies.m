@@ -50,15 +50,19 @@ IDI = {};
 IDD = 0;
 rowToWrite = 0;
 
+% Control case details
+timeLength = 100;
+controlGain = 0.1;
+
 % Case details
 sumCase1 = 0;
-gainCase1 = 1;
+gainCase1 = controlGain;
 haveInc = 0;
 sumCase2 = 0;
-gainCase2 = 1;
+gainCase2 = controlGain;
 
-for t = 0:100
-    rowToWrite = rowToWrite +1;
+for t = 0:controlGain:timeLength
+    rowToWrite = rowToWrite + 1;
     
     % Control case
     IDD(rowToWrite, 1) = t;
@@ -73,17 +77,17 @@ for t = 0:100
 	
 	% Change rates
     if haveInc == 0
-		if sumCase1 == 5
+		if sumCase1 >= 5
             haveInc = 1;
-            sumCase1 = sumCase1 - 5;
-            gainCase1 = gainCase1 + 0.05;
+            sumCase1 = double(single(sumCase1) - 5);
+            gainCase1 = gainCase1 + 0.005;
         end        
     end
 	
 	if mod(t, 1) == 0
 		if sumCase2 >= 5
 			sumCase2 = sumCase2 - 5;
-			gainCase2 = gainCase2 + 0.05;
+			gainCase2 = gainCase2 + 0.005;
 		end
 	end
 end
