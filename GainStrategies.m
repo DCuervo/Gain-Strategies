@@ -45,7 +45,7 @@ out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs
 
 % Set up output file
 gainDetailsFile = 'GainStrategies.xlsx';
-IDT = {'Time\Control Gain', 'Case 1'};
+IDT = {'Time\Control Gain', 'Case 1', 'Case 2'};
 IDI = {};
 IDD = 0;
 rowToWrite = 0;
@@ -54,6 +54,8 @@ rowToWrite = 0;
 sumCase1 = 0;
 gainCase1 = 1;
 haveInc = 0;
+sumCase2 = 0;
+gainCase2 = 1;
 
 for t = 0:100
     rowToWrite = rowToWrite +1;
@@ -64,19 +66,33 @@ for t = 0:100
     % Case 1
     IDD(rowToWrite, 2) = sumCase1;
     sumCase1 = sumCase1 + gainCase1;
-    if sumCase1 == 5
-        if haveInc == 0
+	
+	% Case 2
+	IDD(rowToWrite, 3) = sumCase2;
+	sumCase2 = sumCase2 + gainCase2;
+	
+	% Change rates
+    if haveInc == 0
+		if sumCase1 == 5
             haveInc = 1;
             sumCase1 = sumCase1 - 5;
             gainCase1 = gainCase1 + 0.05;
         end        
     end
+	
+	if mod(t, 1) == 0
+		if sumCase2 >= 5
+			sumCase2 = sumCase2 - 5;
+			gainCase2 = gainCase2 + 0.05;
+		end
+	end
 end
 
 figure;
 hold on
 plot(IDD(:, 1), IDD(:, 1), 'k', 'LineWidth', 2);
 plot(IDD(:, 1), IDD(:, 2), 'r', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 3), 'b', 'LineWidth', 2);
 title('Gain Strategies', 'Interpreter', 'none');
 xlabel('Time', 'FontSize', 12);
 ylabel('Count', 'FontSize', 12);
