@@ -41,6 +41,9 @@ close all;
 clear all;
 clc;
 
+% Time it
+tic
+
 % Designate output directory
 out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs\'
 
@@ -155,3 +158,5 @@ saveas(gcf, [out_dir 'GainRate.png']);
 
 saveData(out_dir, gainDetailsFile, IDT, IDI, IDD);
 
+% Timed
+toc
