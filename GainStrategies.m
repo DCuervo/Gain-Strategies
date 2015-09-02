@@ -54,6 +54,7 @@ rowToWrite = 0;
 % Control case details
 timeLength = 100;
 controlGain = 0.1;
+increaseRate = 0.05;
 
 % Case details
 sumCase1 = 0;
@@ -73,7 +74,7 @@ for t = 0:controlGain:timeLength
         if haveInc == 0
             haveInc = 1;
             sumCase1 = double(single(sumCase1) - 5);
-            gainCase1 = gainCase1 + 0.005;
+            gainCase1 = gainCase1 + (increaseRate*0.1);
         end        
     end
 end
