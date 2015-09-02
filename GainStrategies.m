@@ -53,6 +53,7 @@ rowToWrite = 0;
 % Control case details
 timeLength = 100;
 controlGain = 0.1;
+increaseRate = 0.05;
 
 % Case details
 sumCase1 = 0;
@@ -89,21 +90,21 @@ for t = 0:controlGain:timeLength
         if sumCase1 >= 5
             haveInc = 1;
             sumCase1 = double(single(sumCase1) - 5);
-            gainCase1 = gainCase1 + 0.005;
+            gainCase1 = gainCase1 + (increaseRate*0.1);
         end
     end
     % Case 2
     if mod(t, 1) == 0
         if sumCase2 >= 5
             sumCase2 = sumCase2 - 5;
-            gainCase2 = gainCase2 + 0.005;
+            gainCase2 = gainCase2 + (increaseRate*0.1);
         end
     end
 	% Case 3
 	if mod(t, 1) == 0
 		if sumCase3 >= 5
 			sumCase3 = sumCase3 - 5;
-			gainCase3 = gainCase3*0.05;
+			gainCase3 = gainCase3*(increaseRate);
 		end
 	end
 end
