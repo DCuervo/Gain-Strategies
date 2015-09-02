@@ -135,11 +135,11 @@ end
 
 figure;
 hold on
-plot(IDD(:, 1), IDD(:, 1), 'k', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 3), 'r', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 5), 'b', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 7), 'g', 'LineWidth', 2);
 plot(IDD(:, 1), IDD(:, 9), 'm', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 7), 'g', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 5), 'b', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 3), 'r', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 1), 'k', 'LineWidth', 2);
 title('Gain Strategies: Count', 'Interpreter', 'none');
 xlabel('Time', 'FontSize', 12);
 ylabel('Count', 'FontSize', 12);
@@ -149,11 +149,11 @@ saveas(gcf, [out_dir 'GainStrategies.png']);
 
 figure;
 hold on
-plot(IDD(:, 1), IDD(:, 2), 'k', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 4), 'r', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 6), 'b', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 8), 'g', 'LineWidth', 2);
 plot(IDD(:, 1), IDD(:, 10), 'm', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 8), 'g', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 6), 'b', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 4), 'r', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 2), 'k', 'LineWidth', 2);
 title('Gain Strategies: Rate', 'Interpreter', 'none');
 xlabel('Time', 'FontSize', 12);
 ylabel('Rate', 'FontSize', 12);
