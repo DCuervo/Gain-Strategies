@@ -41,6 +41,7 @@ close all;
 clear all;
 clc;
 
+% Designate output directory
 out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs\'
 
 % Set up output file
