@@ -41,7 +41,12 @@ close all;
 clear all;
 clc;
 
-out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs\'
+code_dir = pwd;
+[temp_dir, imageName, ~] = fileparts(code_dir);
+out_dir = [temp_dir '\Outputs\']
+if ~exist(out_dir)
+    mkdir(out_dir);
+end
 
 % Set up output file
 gainDetailsFile = 'GainStrategies.xlsx';
