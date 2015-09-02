@@ -41,6 +41,7 @@ close all;
 clear all;
 clc;
 
+% Create output directory
 code_dir = pwd;
 [temp_dir, imageName, ~] = fileparts(code_dir);
 out_dir = [temp_dir '\Outputs\']
