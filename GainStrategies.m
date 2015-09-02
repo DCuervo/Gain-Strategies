@@ -103,7 +103,7 @@ for t = 0:controlGain:timeLength
 	if mod(t, 1) == 0
 		if sumCase3 >= 5
 			sumCase3 = sumCase3 - 5;
-			gainCase3 = gainCase3*0.05;
+			gainCase3 = gainCase3*1.05;
 		end
 	end
 end
