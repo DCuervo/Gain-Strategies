@@ -45,57 +45,64 @@ out_dir = 'C:\Users\I2R_Admin\Documents\Work\Study\Git\RepositoryExample\Outputs
 
 % Set up output file
 gainDetailsFile = 'GainStrategies.xlsx';
-IDT = {'Time\Control Gain', 'Case 1', 'Case 2', 'Case 3'};
+IDT = {'Time\Control Case', 'Control Rate', 'Case 1', 'Rate 1', 'Case 2', 'Rate 2', 'Case 3', 'Rate 3'};
 IDI = {};
 IDD = 0;
 rowToWrite = 0;
 
+% Control case details
+timeLength = 100;
+controlGain = 0.1;
+
 % Case details
 sumCase1 = 0;
-gainCase1 = 1;
+gainCase1 = controlGain;
 haveInc = 0;
 sumCase2 = 0;
-gainCase2 = 1;
+gainCase2 = controlGain;
 sumCase3 = 0;
-gainCase3 = 1;
+gainCase3 = controlGain;
 
-for t = 0:100
-    rowToWrite = rowToWrite +1;
+for t = 0:controlGain:timeLength
+    rowToWrite = rowToWrite + 1;
     
+    % Gain
     % Control case
     IDD(rowToWrite, 1) = t;
-    
+    IDD(rowToWrite, 2) = controlGain/0.1;
     % Case 1
-    IDD(rowToWrite, 2) = sumCase1;
+    IDD(rowToWrite, 3) = sumCase1;
+    IDD(rowToWrite, 4) = gainCase1/0.1;
     sumCase1 = sumCase1 + gainCase1;
-	
-	% Case 2
-	IDD(rowToWrite, 3) = sumCase2;
-	sumCase2 = sumCase2 + gainCase2;
-	
+    % Case 2
+    IDD(rowToWrite, 5) = sumCase2;
+    IDD(rowToWrite, 6) = gainCase2/0.1;
+    sumCase2 = sumCase2 + gainCase2;
 	% Case 3
-	IDD(rowToWrite, 4) = sumCase3;
+	IDD(rowToWrite, 7) = sumCase3;
+	IDD(rowToWrite, 8) = gainCase3/0.1;
 	sumCase3 = sumCase3 + gainCase3;
-	
-	% Change rates
+    
+    % Change rates
+    % Case 1
     if haveInc == 0
-		if sumCase1 == 5
+        if sumCase1 >= 5
             haveInc = 1;
-            sumCase1 = sumCase1 - 5;
-            gainCase1 = gainCase1 + 0.05;
-        end        
+            sumCase1 = double(single(sumCase1) - 5);
+            gainCase1 = gainCase1 + 0.005;
+        end
     end
-	
+    % Case 2
+    if mod(t, 1) == 0
+        if sumCase2 >= 5
+            sumCase2 = sumCase2 - 5;
+            gainCase2 = gainCase2 + 0.005;
+        end
+    end
+	% Case 3
 	if mod(t, 1) == 0
-		if sumCase2 >= 5
-			sumCase2 = sumCase2 - 5;
-			gainCase2 = gainCase2 + 0.05;
-		end
-	end
-	
-	if mod(t, 1) == 05
 		if sumCase3 >= 5
-			sumCase3 = sumCase3 -5;
+			sumCase3 = sumCase3 - 5;
 			gainCase3 = gainCase3*0.05;
 		end
 	end
@@ -104,15 +111,28 @@ end
 figure;
 hold on
 plot(IDD(:, 1), IDD(:, 1), 'k', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 2), 'r', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 3), 'b', 'LineWidth', 2);
-plot(IDD(:, 1), IDD(:, 4), 'g', 'LineWidth', 2);
-title('Gain Strategies', 'Interpreter', 'none');
+plot(IDD(:, 1), IDD(:, 3), 'r', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 5), 'b', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 7), 'g', 'LineWidth', 2);
+title('Gain Strategies: Count', 'Interpreter', 'none');
 xlabel('Time', 'FontSize', 12);
 ylabel('Count', 'FontSize', 12);
 set(gca, 'FontSize', 12);
 savefig(gcf, [out_dir 'GainStrategies.fig']);
 saveas(gcf, [out_dir 'GainStrategies.png']);
+
+figure;
+hold on
+plot(IDD(:, 1), IDD(:, 2), 'k', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 4), 'r', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 6), 'b', 'LineWidth', 2);
+plot(IDD(:, 1), IDD(:, 8), 'g', 'LineWidth', 2);
+title('Gain Strategies: Rate', 'Interpreter', 'none');
+xlabel('Time', 'FontSize', 12);
+ylabel('Rate', 'FontSize', 12);
+set(gca, 'FontSize', 12);
+savefig(gcf, [out_dir 'GainRate.fig']);
+saveas(gcf, [out_dir 'GainRate.png']);
 
 saveData(out_dir, gainDetailsFile, IDT, IDI, IDD);
 
