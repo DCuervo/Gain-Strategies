@@ -60,7 +60,7 @@ IDD = 0;
 rowToWrite = 0;
 
 % Control case details
-timeLength = 100;
+timeLength = 110;
 controlGain = 0.1;
 increaseRate = 0.05;
 
@@ -74,6 +74,11 @@ sumCase3 = 0;
 gainCase3 = controlGain;
 sumCase4 = 0;
 gainCase4 = controlGain;
+
+if timeLength > 105
+    disp(['For memory and computation sake, time length has dropped from ' num2str(timeLength) ' to 107']);
+    timeLength = 107;
+end
 
 for t = 0:controlGain:timeLength
     rowToWrite = rowToWrite + 1;
